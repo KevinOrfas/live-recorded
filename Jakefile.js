@@ -5,7 +5,9 @@ task('default', ['lint'], function(){
 
 desc('Lint Everything');
 task('lint', [], function(){
-    console.log('Lint code goes here');
     var lint = require('./build/lint/lint_runner.js');
-    lint.validateFile('Jakefile.js', {}, {});
+    var files = new jake.FileList();
+    files.include('**/*.js');
+    files.exclude('node_modules');
+    lint.validateFileList(files.toArray(), {}, {});
 });
