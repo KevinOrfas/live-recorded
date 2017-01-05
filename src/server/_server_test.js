@@ -8,6 +8,11 @@
     var server = require('./server.js');
     var http = require('http');
 
+    exports.setUp = function(done) {
+        server.start(port);
+        done();
+    };
+
     exports.tearDown = function(done) {
         server.stop(function() {
             done();
@@ -17,9 +22,7 @@
     //TODO: handle case where stop() is called before start()
     //TODO: test-drive stop() callback
 
-    exports.test_ServerReturnsHelloWorld = function(test) {
-        server.start(port);
-
+    exports.test_serverReturnsHelloWorld = function(test) {
         var request = http.get(`${hostname}:${port}`);
         request.on('response', function(response) {
             var receivedData = false;
@@ -36,5 +39,13 @@
 
         });
     };
+
+    exports.test_serverRunsCallbackWhenStopCompletes = function(test) { 
+        server.stop(function(){
+            test.done();
+        });
+        server.start();
+    };
+    
 
 }());
