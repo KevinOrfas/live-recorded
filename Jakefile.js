@@ -78,23 +78,6 @@
 		return [major, minor, bugfix];
 	}
 
-	function sh(command, callback) {
-		console.log('> ' + command);
-
-		var stdout = '';
-		var process = jake.createExec(command, {printStdout:true, printStderr: true});
-		process.on('stdout', function(chunk) {
-			stdout += chunk;
-		});
-		process.on('cmdEnd', function() {
-			console.log();
-			callback(stdout);
-		});
-		process.run();
-	}
-
-
-
     function nodeLintOptions() {
         return {
             bitwise:true,
