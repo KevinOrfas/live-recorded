@@ -14,7 +14,7 @@
         files.include('**/*.js');
         files.exclude('node_modules');
         var options = nodeLintOptions();
-        var passed = lint.validateFileList(files.toArray(), {}, {}) || fail('Lint failed');
+        var passed = lint.validateFileList(files.toArray(), options, {}) || fail('Lint failed');
         if(!passed) fail('Lint failed');
     });
 
@@ -48,7 +48,7 @@
             eqeqeq:true,
             forin:true,
             immed:true,
-            latedef:true,
+            latedef:'nofunc',
             newcap:true,
             noarg:true,
             noempty:true,

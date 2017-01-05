@@ -1,8 +1,15 @@
 (function() {
     'use strict';
 
-    exports.testNothing = function(test){
-        test.equals(3, 3, 'number');
+    var server = require('./server.js');
+    var http = require('http');
+
+    exports.testHttpServer = function(test) {
+        server.start();
+        http.get('http://localhost:8080', function(response){
+
+        });
+
         test.done();
     };
 
