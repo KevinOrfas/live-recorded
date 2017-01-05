@@ -13,7 +13,8 @@
         files.include('**/*.js');
         files.exclude('node_modules');
         var options = nodeLintOptions();
-        lint.validateFileList(files.toArray(), {}, {});
+        var passed = lint.validateFileList(files.toArray(), {}, {}) || fail('Lint failed');
+        if(!passed) fail('Lint failed');
     });
 
     desc('Integrate');
