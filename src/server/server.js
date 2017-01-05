@@ -9,9 +9,9 @@
     exports.start = function() {
         server = http.createServer();
         server.on('request', function(request, response) {
-            response.end();
+            response.end('Hello World');
         });
-        server.listen(port);    //TODO: Remove duplication
+        server.listen(port);
     };
 
     exports.stop = function(callback) {
