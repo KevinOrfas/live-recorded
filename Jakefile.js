@@ -1,8 +1,9 @@
+/*global desc, task, jake, fail, complete */
 (function() {
     'use strict';
 
     desc('Builing test');
-    task('default', ['lint'], function(){
+    task('default', ['lint', 'test'], function(){
         console.log('\n\nBuild OK');
     });
 
@@ -15,6 +16,13 @@
         var options = nodeLintOptions();
         var passed = lint.validateFileList(files.toArray(), {}, {}) || fail('Lint failed');
         if(!passed) fail('Lint failed');
+    });
+
+    desc('Test everything');
+    task('test', [], function(){
+        var reporter = require('nodeunit').reporters.minimal;
+        reporter.run(['src/server/_server_test.js']);
+
     });
 
     desc('Integrate');
