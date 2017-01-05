@@ -9,5 +9,27 @@ task('lint', [], function(){
     var files = new jake.FileList();
     files.include('**/*.js');
     files.exclude('node_modules');
+    var options = nodeLintOptions();
     lint.validateFileList(files.toArray(), {}, {});
+
+    function nodeLintOptions(){
+        return {
+            bitwise:true,
+			curly:false,
+			eqeqeq:true,
+			forin:true,
+			immed:true,
+			latedef:true,
+			newcap:true,
+			noarg:true,
+			noempty:true,
+			nonew:true,
+			regexp:true,
+			undef:true,
+			strict:true,
+			trailing:true,
+			node:true
+        };
+    }
+    
 });
