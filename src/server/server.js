@@ -6,6 +6,7 @@
     var server;
  
     exports.start = function(portNumber) {
+        if(!portNumber) throw new Error('Please provide a port');
         server = http.createServer();
         server.on('request', function(request, response) {
             response.end('Hello World');
