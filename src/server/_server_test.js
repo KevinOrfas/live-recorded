@@ -1,5 +1,9 @@
+/*jshint esversion: 6 */
 (function() {
     'use strict';
+
+    var port = '8080';
+    var hostname = 'http://localhost';
 
     var server = require('./server.js');
     var http = require('http');
@@ -14,9 +18,9 @@
     //TODO: test-drive stop() callback
 
     exports.test_ServerReturnsHelloWorld = function(test) {
-        server.start();
+        server.start(port);
 
-        var request = http.get('http://localhost:8080');
+        var request = http.get(`${hostname}:${port}`);
         request.on('response', function(response) {
             var receivedData = false;
             response.setEncoding('utf8');
