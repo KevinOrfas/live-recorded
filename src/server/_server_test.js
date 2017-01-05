@@ -13,14 +13,6 @@
     //TODO: handle case where stop() is called before start()
     //TODO: test-drive stop() callback
 
-    exports.test_ServerRespondsToGetRequests = function(test) {
-        server.start();
-        http.get('http://localhost:8080', function(response) {
-            response.on('data', function(){});
-            test.done();    
-        });
-    };
-
     exports.test_ServerReturnsHelloWorld = function(test) {
         server.start();
 
